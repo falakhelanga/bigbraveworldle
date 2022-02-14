@@ -29,8 +29,8 @@ body {
 }
 .guess-grid {
   display: grid;
-  grid-template-columns: repeat(5, 3.5em);
-  grid-template-rows: repeat(6, 3.5em);
+  grid-template-columns: repeat(5, 6em);
+  grid-template-rows: repeat(6, 7em);
   gap: 0.25em;
   justify-self: center;
   align-content: center;
@@ -42,8 +42,8 @@ body {
 .key-board {
   margin-top: 2rem;
   display: grid;
-  grid-template-columns: repeat(20, 1em);
-  grid-template-rows: repeat(3, 3em);
+  grid-template-columns: repeat(20, 1.5em);
+  grid-template-rows: repeat(3, 5em);
   gap: 0.25em;
   justify-self: center;
   align-content: center;
@@ -251,4 +251,15 @@ body {
 .clock span {
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+@media (min-width: 576px) {
+  .key-board {
+    grid-template-columns: repeat(20, 1em);
+    grid-template-rows: repeat(3, 3em);
+  }
+  .guess-grid {
+    grid-template-columns: repeat(5, 3.5em);
+    grid-template-rows: repeat(6, 3.5em);
+  }
 }
