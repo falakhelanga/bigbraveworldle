@@ -1,0 +1,254 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: hsl(240, 3%, 7%);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1em;
+  font-size: clamp(0.5rem, 2.5vmin, 1.5rem);
+  align-items: center;
+  font-family: sans-serif;
+}
+.header {
+  display: flex;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #818384;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  color: white;
+}
+.header .title {
+  margin-left: 1rem;
+}
+.guess-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 3.5em);
+  grid-template-rows: repeat(6, 3.5em);
+  gap: 0.25em;
+  justify-self: center;
+  align-content: center;
+  /* background-color: blue; */
+  /* width: 70%;
+  height: 100%; */
+}
+
+.key-board {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(20, 1em);
+  grid-template-rows: repeat(3, 3em);
+  gap: 0.25em;
+  justify-self: center;
+  align-content: center;
+}
+
+.key {
+  grid-column: span 2;
+  background-color: #818384;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  cursor: pointer;
+}
+.large-btn {
+  grid-column: span 3;
+}
+.tile {
+  font-size: 2em;
+  color: white;
+  border: 0.06em solid hsl(240, 2%, 23%);
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  transition: transform 250ms linear;
+}
+
+.tile[data-state="active"] {
+  border: 0.06em solid #565758;
+}
+
+.bounce {
+  animation: active;
+}
+.tile[data-state="wrong"],
+.key[data-state="wrong"] {
+  border: none;
+  background-color: #3a3a3c;
+}
+.tile[data-state="wrong-location"],
+.key[data-state="wrong-location"] {
+  border: none;
+  background-color: #b59f3b;
+}
+.tile[data-state="correct"],
+.key[data-state="correct"] {
+  border: none;
+  background-color: #538d4e;
+}
+
+.shake {
+  animation: shake 250ms ease-in-out;
+}
+
+.flip {
+  transform: rotateX(90deg);
+  /* animation: flip 250ms ease-in-out; ; */
+}
+
+.dance {
+  animation: dance 500ms ease-in-out;
+}
+@keyframes shake {
+  10% {
+    transform: translateX(-5%);
+  }
+
+  30% {
+    transform: translateX(5%);
+  }
+
+  50% {
+    transform: translateX(-7.5%);
+  }
+
+  70% {
+    transform: translateX(7.5%);
+  }
+
+  90% {
+    transform: translateX(-5%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes dance {
+  20% {
+    transform: translateY(-50%);
+  }
+
+  40% {
+    transform: translateY(5%);
+  }
+
+  60% {
+    transform: translateY(-25%);
+  }
+
+  80% {
+    transform: translateY(2.5%);
+  }
+
+  90% {
+    transform: translateY(-5%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes active {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.alert-container {
+  position: fixed;
+  top: 10vh;
+  left: 50vw;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alert {
+  pointer-events: none;
+  background-color: hsl(204, 7%, 85%);
+  padding: 0.75em;
+  border-radius: 0.25em;
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+  margin-bottom: 0.5em;
+}
+
+.alert:last-child {
+  margin-bottom: 0;
+}
+
+.alert.hide {
+  opacity: 0;
+}
+.backdrop {
+  display: none;
+  justify-content: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal {
+  margin-top: 10rem;
+  background-color: #121213;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  height: 15rem;
+  width: 80vw;
+}
+.backdrop[data-isopen="open"] {
+  display: flex;
+}
+.score_h1 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+[data-score] {
+  width: 7rem;
+  height: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #538d4e;
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vmin, 3rem);
+  font-weight: bold;
+}
+.clock {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vmin, 3rem);
+}
+
+.clock span {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
